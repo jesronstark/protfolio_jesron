@@ -1,0 +1,13 @@
+{
+  "name": "jesron-portfolio-root",
+  "version": "1.0.0",
+  "description": "Fullstack MERN Portfolio",
+  "scripts": {
+    "start": "npm start --prefix server",
+    "install-server": "npm install --prefix server",
+    "install-client": "npm install --prefix client",
+    "build-client": "npm run build --prefix client",
+    "build": "npm run install-server && npm run install-client && npm run build-client",
+    "dev": "npm run dev --prefix server"
+  }
+}
