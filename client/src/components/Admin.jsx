@@ -147,32 +147,33 @@ export default function Admin() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === 'admin123') {
+    if (password === 'jesron0328') {
       setIsAuthenticated(true);
     } else {
-      showStatus('Incorrect password!');
+      showStatus('Incorrect credentials.');
     }
   };
 
   if (!isAuthenticated) return (
     <div className="admin-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <div className="bg-mesh"></div>
-      <form onSubmit={handleLogin} className="glass-panel" style={{ width: '100%', maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: '1rem', zIndex: 1 }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '1rem' }} className="text-gradient">Admin Login</h2>
-        {status && <div className="admin-status" style={{ borderColor: '#ef4444', color: '#ef4444' }}>{status}</div>}
-        <div className="form-group">
-          <label className="form-label">Password</label>
+      <form onSubmit={handleLogin} className="glass-panel" style={{ width: '100%', maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: '2rem', zIndex: 1, border: '1px solid var(--accent-primary)' }}>
+        <h2 style={{ textAlign: 'center', fontFamily: 'var(--font-heading)', fontSize: '2rem', letterSpacing: '4px' }} className="text-gradient">SECURE LOGIN</h2>
+        {status && <div className="admin-status" style={{ border: 'none', color: '#ff3333', background: 'transparent' }}>{status}</div>}
+        <div className="form-group" style={{ marginBottom: 0 }}>
+          <label className="form-label" style={{ color: 'var(--accent-primary)' }}>Passcode</label>
           <input 
             type="password" 
             className="form-input" 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter admin password"
+            placeholder="• • • • • • • •"
             required
+            style={{ fontSize: '1.5rem', letterSpacing: '8px', textAlign: 'center' }}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Login</button>
-        <a href="/" style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.85rem' }} className="text-muted">Return to Portfolio</a>
+        <button type="submit" className="btn btn-primary" style={{ marginTop: '1rem' }}>Access Portal</button>
+        <a href="/" style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.8rem', letterSpacing: '2px', textTransform: 'uppercase' }} className="text-muted">Return to Portfolio</a>
       </form>
     </div>
   );
@@ -186,9 +187,9 @@ export default function Admin() {
   return (
     <div className="admin-container">
        <div className="bg-mesh"></div>
-       <header className="admin-header glass-panel">
-         <h2>JESRON - Admin Panel</h2>
-         <a href="/" className="btn btn-outline">Back to Site</a>
+       <header className="admin-header glass-panel" style={{ padding: '1.5rem 3rem' }}>
+         <h2 style={{ letterSpacing: '6px' }}>COMMAND CENTER</h2>
+         <a href="/" className="btn btn-outline" style={{ fontSize: '0.75rem' }}>Exit Portal</a>
        </header>
 
        {status && <div className="admin-status glass-panel">{status}</div>}

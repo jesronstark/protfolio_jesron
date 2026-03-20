@@ -20,7 +20,9 @@ export default function Navbar({ social, hero }) {
     <nav className={`navbar ${scrolled ? 'scrolled glass-panel' : ''}`}>
       <div className="container nav-container">
         <a href="#home" className="nav-logo">
-          <span className="text-gradient">&lt;{hero?.name} /&gt;</span>
+          <span className="text-gradient" style={{ letterSpacing: '4px', textTransform: 'uppercase' }}>
+             {hero?.name || "J·S"}
+          </span>
         </a>
         
         <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>

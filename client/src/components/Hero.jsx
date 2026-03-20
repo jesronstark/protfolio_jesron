@@ -1,59 +1,47 @@
 import React from 'react';
-import { FiArrowRight, FiDownload } from 'react-icons/fi';
+import { FiArrowRight } from 'react-icons/fi';
 import './Hero.css';
-import profileImage from '../assets/jesron-image.png';
 
 export default function Hero({ data }) {
-  if (!data) return null;
+  if (!data || !data.title) return null;
 
   return (
     <section id="home" className="hero section">
-      <div className="container hero-container grid">
-        <div className="hero-content">
-          <div className="hero-badge animate-fade-in-up">
-            <span className="blob"></span>
-            Available for work
-          </div>
-          
-          <h1 className="hero-title animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            <span className="text-secondary">{data.title.split(' ')[0]} {data.title.split(' ')[1]}</span><br />
-            <span className="text-gradient">{data.name}</span>
-          </h1>
-          
-          <h2 className="hero-subtitle animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            {data.subtitle}
+      <div className="container">
+        
+        <div className="hero-text-content animate-fade-in-up">
+          <h2 className="hero-subtitle text-secondary" style={{ animationDelay: '0.1s' }}>
+            {data.subtitle || "Welcome to my portfolio"}
           </h2>
           
-          <p className="hero-desc animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-            {data.description}
+          <h1 className="hero-title text-gradient" style={{ animationDelay: '0.2s' }}>
+            {data.title || "Elite Experience"}
+          </h1>
+          
+          <p className="hero-desc text-muted" style={{ animationDelay: '0.3s' }}>
+            {data.description || "Crafting digital luxury and robust backend systems."}
           </p>
 
-          <div className="hero-roles animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            {data.roles?.map((role, idx) => (
-              <span key={idx} className="role-tag">{role}</span>
-            ))}
-          </div>
-          
-          <div className="hero-actions animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+          <div className="hero-actions" style={{ animationDelay: '0.4s' }}>
             <a href="#projects" className="btn btn-primary">
-              View Work <FiArrowRight />
-            </a>
-            <a href={data.resumeLink} target="_blank" rel="noreferrer" className="btn btn-outline">
-              Resume <FiDownload />
+              View Collection <FiArrowRight />
             </a>
           </div>
         </div>
 
-        <div className="hero-visual animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          <div className="profile-wrapper">
-             <div className="profile-glow"></div>
-             {/* If window.PROFILE_IMAGE is defined, it will use that from index.html, else placeholder */}
-             <img src={profileImage} alt={data.name} className="profile-img" />
-             <div className="tech-orbit orbit-1"><span>⚛️</span></div>
-             <div className="tech-orbit orbit-2"><span>🟢</span></div>
-             <div className="tech-orbit orbit-3"><span>🍃</span></div>
+        <div className="hero-visual-bottom animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+          <div className="hero-image-wrapper">
+             {/* Uses the provided picture, placed 'down side', fading out at the bottom */}
+             <img 
+                src={window.PROFILE_IMAGE || "/profile.jpg"} 
+                alt="Portrait" 
+                className="hero-large-img" 
+                onError={(e) => { e.target.src = 'https://i.ibb.co/L5hYhY3/profile-placeholder.jpg' }}
+             />
+             <div className="hero-image-fade"></div>
           </div>
         </div>
+        
       </div>
     </section>
   );

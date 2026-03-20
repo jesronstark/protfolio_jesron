@@ -1,87 +1,57 @@
 .footer {
   border-top: 1px solid var(--border-color);
-  padding: var(--space-8) 0;
-  background: var(--bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
+  padding: 6rem 0;
+  background: var(--bg-primary);
+  text-align: center;
 }
 
-.footer::before {
-  content: '';
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 100px;
-  background: var(--accent-glow);
-  filter: blur(60px);
-  z-index: 0;
-}
-
-.footer-content {
+.footer-elite-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-6);
-  position: relative;
-  z-index: 1;
+  gap: 3rem;
+}
+
+.footer-brand {
+  font-size: 2rem;
+  letter-spacing: 12px;
+  margin-right: -12px; /* Offset letter spacing alignment */
 }
 
 .footer-social {
   display: flex;
-  gap: var(--space-4);
+  gap: 2.5rem;
 }
 
 .footer-social a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: rgba(15, 23, 42, 0.5);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  font-size: 1.25rem;
-  transition: all var(--transition-normal);
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  transition: all var(--transition-slow);
 }
 
 .footer-social a:hover {
-  background: var(--accent-primary);
-  border-color: var(--accent-primary);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px var(--accent-glow);
+  color: var(--accent-primary);
+  transform: translateY(-8px);
 }
 
 .footer-copyright {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2rem;
 }
 
-.heart-icon {
-  color: var(--accent-tertiary);
-  animation: heartbeat 1.5s infinite;
+.secret-admin-link {
+  color: var(--text-primary);
+  cursor: default; /* Make it look exactly like normal text */
+  margin-left: 0.5rem;
+  transition: color var(--transition-slow);
 }
 
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  15% { transform: scale(1.3); }
-  30% { transform: scale(1); }
-  45% { transform: scale(1.3); }
-  60% { transform: scale(1); }
-  100% { transform: scale(1); }
-}
-
-@media (max-width: 768px) {
-  .footer-copyright {
-    text-align: center;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+/* Only highlight on hover so they don't know it's a link unless looking closely, 
+   but user asked to hide it, so keeping hover very subtle */
+.secret-admin-link:hover {
+  color: var(--accent-primary);
 }
