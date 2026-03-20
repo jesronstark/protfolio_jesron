@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiArrowRight, FiDownload } from 'react-icons/fi';
 import './Hero.css';
+import profileImage from '../assets/jesron-image.png';
 
 export default function Hero({ data }) {
   if (!data) return null;
@@ -47,7 +48,7 @@ export default function Hero({ data }) {
           <div className="profile-wrapper">
              <div className="profile-glow"></div>
              {/* If window.PROFILE_IMAGE is defined, it will use that from index.html, else placeholder */}
-             <img src={window.PROFILE_IMAGE || "https://i.ibb.co/L5hYhY3/profile-placeholder.jpg"} alt={data.name} className="profile-img" />
+             <img src={profileImage} alt={data.name} className="profile-img" />
              <div className="tech-orbit orbit-1"><span>⚛️</span></div>
              <div className="tech-orbit orbit-2"><span>🟢</span></div>
              <div className="tech-orbit orbit-3"><span>🍃</span></div>
