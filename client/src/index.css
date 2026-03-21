@@ -1,38 +1,43 @@
-/* ===== ELITE PREMIUM CSS SYSTEM ===== */
+/* ===== PROFESSIONAL TECHIE LIGHT THEME ===== */
 :root {
-  /* Elite Dark Color Palette */
-  --bg-primary: #050505; /* True Black */
-  --bg-secondary: #0a0a0a;
-  --bg-card: rgba(18, 18, 18, 0.7);
-  --bg-glass: rgba(10, 10, 10, 0.85);
+  /* Clean Light Palette */
+  --bg-primary: #f8fafc; /* Very light slate */
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.85);
   
-  --text-primary: #ffffff;
-  --text-secondary: #e5e5e5;
-  --text-muted: #a3a3a3;
+  --text-primary: #0f172a; /* Deep slate */
+  --text-secondary: #334155;
+  --text-muted: #64748b;
   
-  --accent-primary: #d4af37; /* Metallic Gold */
-  --accent-secondary: #c5a059; /* Soft Gold */
-  --accent-glow: rgba(212, 175, 55, 0.15);
+  --accent-primary: #2563eb; /* Tech Blue */
+  --accent-secondary: #3b82f6; 
+  --accent-tertiary: #0ea5e9;
+  --accent-glow: rgba(37, 99, 235, 0.15);
+  --success: #10b981;
   
-  --border-color: rgba(212, 175, 55, 0.15);
-  --border-hover: rgba(212, 175, 55, 0.3);
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e1;
   
-  /* Elite Typography */
-  --font-heading: 'Cormorant Garamond', serif;
+  /* Typography */
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
   
-  /* Clean Layout */
+  /* Layout */
   --container-width: 1200px;
-  --border-radius-sm: 2px;
-  --border-radius-md: 4px;
-  --border-radius-lg: 8px;
+  --border-radius-sm: 6px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
   --border-radius-full: 9999px;
   
-  /* Refined Effects */
-  --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.1);
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Modern Soft Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+  
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
 }
 
 * {
@@ -46,24 +51,24 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  font-weight: 300;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.2;
+  color: var(--text-primary);
 }
 
 a {
   color: var(--accent-primary);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 a:hover {
-  color: #fff;
+  color: var(--accent-secondary);
 }
 
 /* Utilities */
@@ -75,155 +80,163 @@ a:hover {
 }
 
 .section {
-  padding: 8rem 0;
+  padding: 6rem 0;
   position: relative;
 }
 
 .section-title {
-  font-size: 3.5rem;
-  margin-bottom: 4rem;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  position: relative;
 }
 
-.text-secondary {
-  color: var(--text-secondary);
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--accent-primary);
+  border-radius: var(--border-radius-full);
 }
+
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
 
 .text-gradient {
-  background: linear-gradient(135deg, #fceabb, #f8b500);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   display: inline-block;
 }
 
-/* Premium Glass/Card */
+/* Glass/Card */
 .glass-panel {
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
-  padding: 3rem;
+  padding: 2rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
   transition: all var(--transition-normal);
 }
 
 .glass-panel:hover {
+  box-shadow: var(--shadow-lg);
   border-color: var(--border-hover);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
 }
 
-/* Minimal Elite Buttons */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 1rem 2rem;
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--border-radius-md);
   cursor: pointer;
-  transition: all var(--transition-normal);
-  border: 1px solid var(--accent-primary);
-  border-radius: 0;
+  transition: all var(--transition-fast);
+  border: none;
 }
 
 .btn-primary {
   background: var(--accent-primary);
-  color: var(--bg-primary);
+  color: white;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
 }
 
 .btn-primary:hover {
-  background: transparent;
-  color: var(--accent-primary);
+  background: #1d4ed8;
+  color: white;
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1px);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--text-primary);
+  border: 1px solid var(--border-color);
 }
 
 .btn-outline:hover {
-  background: var(--accent-primary);
-  color: var(--bg-primary);
+  background: var(--bg-primary);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
 }
 
-/* Inputs */
-.form-input {
-  width: 100%;
-  padding: 1rem;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border-color);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  transition: border-color var(--transition-fast);
-  outline: none;
+/* Specific button for WhatsApp */
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
 }
-.form-input:focus {
-  border-bottom-color: var(--accent-primary);
+.btn-whatsapp:hover {
+  background: #128C7E;
+  color: white;
 }
+
+/* Forms */
 .form-group {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
+
 .form-label {
   display: block;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
   margin-bottom: 0.5rem;
 }
 
-/* Mesh Glows - Subtle and elegant */
-.bg-mesh {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
+.form-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
   background: var(--bg-primary);
-  overflow: hidden;
-}
-.bg-mesh::after {
-  content: '';
-  position: absolute;
-  top: -20%;
-  left: -10%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
-  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  transition: all var(--transition-fast);
+  outline: none;
 }
 
-/* Skeleton Loading (Elegant) */
+.form-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  background: var(--bg-secondary);
+}
+
+/* Skeleton */
 .skeleton {
-  background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
   background-size: 200% 100%;
-  animation: skeletonLoading 2s infinite ease-in-out;
+  animation: skeletonLoading 1.5s infinite;
 }
 @keyframes skeletonLoading {
   from { background-position: 200% 0; }
   to { background-position: -200% 0; }
 }
 
-/* Fade in animations */
+/* Animations */
 .animate-fade-in-up {
   opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.5s ease-out forwards;
 }
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.text-muted { color: var(--text-muted); }
+.mt-2 { margin-top: 0.5rem; }
 .mt-4 { margin-top: 1rem; }
-.mt-8 { margin-top: 2rem; }
+.mt-6 { margin-top: 1.5rem; }
 .w-full { width: 100%; }
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
