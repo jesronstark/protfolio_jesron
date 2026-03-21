@@ -6,43 +6,47 @@ export default function Projects({ projects }) {
   if (!projects || projects.length === 0) return null;
 
   return (
-    <section id="projects" className="projects section">
-      <div className="container">
-        <h2 className="section-title">Featured <span className="text-secondary">Projects</span></h2>
-        
-        <div className="projects-grid">
-          {projects.map((project, idx) => (
-            <div key={project.id || idx} className="project-card glass-panel animate-fade-in-up" 
-                 style={{ animationDelay: `${idx * 0.15}s`, '--project-color': project.color || 'var(--accent-primary)' }}>
+    <section id="projects" className="projects-section section container">
+      <h2 className="section-title text-gradient">System Deployments</h2>
+      
+      <div className="projects-grid">
+        {projects.map((project, idx) => (
+          <div key={project.id || idx} className="project-card glass-panel" style={{"--card-accent": project.color || 'var(--accent-primary)'}}>
+            
+            {/* The dynamically uploaded cloud image mapped here */}
+            {project.coverImage && (
+              <div className="project-cover">
+                <img src={project.coverImage} alt={project.name} loading="lazy" />
+                <div className="project-cover-overlay"></div>
+              </div>
+            )}
+            
+            <div className="project-content">
+              <h3 className="project-title">{project.name}</h3>
+              <p className="project-desc">{project.description}</p>
               
-              <div className="project-color-bar"></div>
+              <div className="project-stack">
+                {project.stack?.map((tech, i) => (
+                  <span key={i} className="stack-pill">{tech}</span>
+                ))}
+              </div>
               
-              <div className="project-content">
-                <h3 className="project-title">{project.name}</h3>
-                <p className="project-desc">{project.description}</p>
-                
-                <div className="project-stack">
-                  {project.stack?.map((tech, tIdx) => (
-                    <span key={tIdx} className="tech-tag">{tech}</span>
-                  ))}
-                </div>
-                
-                <div className="project-links">
-                  {project.github && project.github !== '#' && (
-                     <a href={project.github} target="_blank" rel="noreferrer" className="project-link">
-                       <FiGithub /> Source
-                     </a>
-                  )}
-                  {project.live && project.live !== '#' && (
-                     <a href={project.live} target="_blank" rel="noreferrer" className="project-link">
-                       <FiExternalLink /> Live Demo
-                     </a>
-                  )}
-                </div>
+              <div className="project-links">
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noreferrer" className="p-link">
+                    <FiGithub /> Source
+                  </a>
+                )}
+                {project.live && (
+                  <a href={project.live} target="_blank" rel="noreferrer" className="p-link active-link">
+                    <FiExternalLink /> Live Instance
+                  </a>
+                )}
               </div>
             </div>
-          ))}
-        </div>
+            
+          </div>
+        ))}
       </div>
     </section>
   );

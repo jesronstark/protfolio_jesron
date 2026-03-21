@@ -1,53 +1,56 @@
 import React from 'react';
-import { FiArrowRight, FiMail } from 'react-icons/fi';
-import { FaWhatsapp } from 'react-icons/fa';
+import { FiArrowRight, FiTerminal } from 'react-icons/fi';
+import { FaWhatsapp, FaGithub } from 'react-icons/fa';
 import './Hero.css';
 
 export default function Hero({ data }) {
-  if (!data) return null;
+  if (!data || !data.title) return null;
 
   return (
     <section id="home" className="hero-section">
       <div className="hero-grid container">
         
-        <div className="hero-content animate-fade-in-up">
-          <div className="hero-badge">
-            <span className="live-dot"></span> Available for work
+        <div className="hero-content">
+          <div className="status-badge">
+            <span className="pulse-dot"></span> System Online - Accepting Jobs
           </div>
           
-          <h1 className="hero-title">{data.title || "Software Engineer"}</h1>
-          <h2 className="hero-subtitle text-gradient">{data.subtitle}</h2>
+          <h1 className="hero-title">{data.name || "System Architecht"}</h1>
+          <h2 className="hero-subtitle text-gradient">{data.title}</h2>
           
           <p className="hero-desc">{data.description}</p>
           
           <div className="hero-roles">
             {data.roles?.map((role, idx) => (
-              <span key={idx} className="tech-tag">{role}</span>
+              <span key={idx} className="tech-tag"><FiTerminal size={12}/> {role}</span>
             ))}
           </div>
 
-          <div className="hero-actions mt-6">
+          <div className="hero-actions mt-8">
             <a href="#projects" className="btn btn-primary">
-              View Projects <FiArrowRight />
+              Initialize Projects <FiArrowRight />
             </a>
+            {data.githubUsername && (
+              <a href={`https://github/${data.githubUsername}`} target="_blank" rel="noreferrer" className="btn btn-outline">
+                <FaGithub size={18} /> Source Code
+              </a>
+            )}
             <a href="https://wa.me/919629199741" target="_blank" rel="noreferrer" className="btn btn-whatsapp">
-              <FaWhatsapp size={18} /> WhatsApp
-            </a>
-            <a href="mailto:Jesronstark@gmail.com" className="btn btn-outline">
-              <FiMail size={18} /> Email
+              <FaWhatsapp size={18} /> Encrypted Comms
             </a>
           </div>
         </div>
 
-        <div className="hero-visual animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          <div className="pic-wrapper">
+        <div className="hero-visual">
+          <div className="glass-frame">
              <img 
-                src={window.PROFILE_IMAGE || "/profile.jpg"} 
+                src={data.heroImage || "/profile.jpg"} 
                 alt="Jesron" 
-                className="full-size-pic" 
+                className="hero-pic" 
                 onError={(e) => { e.target.src = 'https://i.ibb.co/L5hYhY3/profile-placeholder.jpg' }}
              />
-             <div className="pic-backdrop"></div>
+             <div className="cyber-corner top-left"></div>
+             <div className="cyber-corner bottom-right"></div>
           </div>
         </div>
         
