@@ -1,20 +1,22 @@
+/* Cyber Premium Navbar Styles */
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: var(--space-6) 0;
+  padding: 2rem 0; /* Huge premium padding */
   transition: all var(--transition-normal);
-  border: 1px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 
 .navbar.scrolled {
-  padding: var(--space-4) 0;
-  border-radius: 0;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  padding: 1rem 0;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .nav-container {
@@ -25,7 +27,7 @@
 
 .nav-logo {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 800;
   letter-spacing: -0.5px;
 }
@@ -33,25 +35,27 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
+  gap: 3rem; /* Enormous spacing between links, resolving 'make space between all' */
 }
 
 .nav-links a:not(.btn) {
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1rem;
   position: relative;
+  letter-spacing: 1px;
 }
 
 .nav-links a:not(.btn)::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -6px;
   left: 0;
   width: 0;
   height: 2px;
   background: var(--accent-primary);
   transition: width var(--transition-normal);
   border-radius: 2px;
+  box-shadow: 0 0 10px var(--accent-primary);
 }
 
 .nav-links a:not(.btn):hover::after {
@@ -60,28 +64,29 @@
 
 .nav-social {
   display: flex;
-  gap: var(--space-4);
+  gap: 1.5rem; /* Spacious premium icons */
 }
 
 .nav-social a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   transition: all var(--transition-normal);
 }
 
 .nav-social a:hover {
-  background: var(--accent-primary);
+  background: rgba(0, 240, 255, 0.1);
   border-color: var(--accent-primary);
-  transform: translateY(-3px) rotate(8deg);
-  box-shadow: 0 5px 15px var(--accent-glow);
+  color: var(--accent-primary);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
 }
 
 .mobile-toggle {
@@ -90,11 +95,12 @@
   border: none;
   color: var(--text-primary);
   cursor: pointer;
+  padding: 10px;
 }
 
 @media (max-width: 992px) {
   .nav-social {
-    display: none;
+    display: none; /* Hide social icons on tablet to ensure spacing is clean */
   }
 }
 
@@ -109,14 +115,15 @@
     left: 0;
     width: 100%;
     background: var(--bg-card);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid var(--accent-primary);
     flex-direction: column;
-    padding: var(--space-6) 0;
-    gap: var(--space-6);
+    padding: 3rem 0;
+    gap: 2rem;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     transition: clip-path var(--transition-normal);
+    box-shadow: var(--shadow-lg);
   }
   
   .nav-links.open {

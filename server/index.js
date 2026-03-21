@@ -110,7 +110,8 @@ async function readData() {
     if (!doc || !doc.data || Object.keys(doc.data).length === 0) {
       doc = await Portfolio.create({ data: getDefaultData() });
     }
-    return doc.data;
+    // Deep clone the object so Mongoose schema array watchers don't crash when filtering array nodes
+    return JSON.parse(JSON.stringify(doc.data));
   } catch (err) {
     return getDefaultData();
   }
