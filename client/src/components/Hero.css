@@ -4,7 +4,8 @@
 }
 
 .hero-grid {
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; z-index: 10; relative;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; z-index: 10; position: relative;
+
 }
 
 .status-badge {

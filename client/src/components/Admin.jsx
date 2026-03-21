@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FiTrash2, FiPlus, FiGithub, FiUploadCloud, FiImage } from 'react-icons/fi';
+import { FiTrash2, FiPlus, FiGithub, FiUploadCloud, FiImage, FiRefreshCw } from 'react-icons/fi';
+
 import './Admin.css';
 
 export default function Admin() {
@@ -207,9 +208,63 @@ export default function Admin() {
             </form>
           </section>
 
-          {/* ... keeping other sections minimized for brevity but logic stands ... */}
-          
+          <div className="admin-grid-2 mt-6">
+            <section className="admin-section glass-panel">
+              <div className="section-head"><h3>Experience Ledger</h3></div>
+              <div className="admin-list">
+                {data.experience?.map(e => (
+                  <div key={e.id} className="admin-list-item">
+                    <div className="list-info">
+                      <div>
+                        <strong>{e.role}</strong>
+                        <div style={{fontSize: '0.8rem', color: 'var(--text-muted)'}}>{e.company} | {e.period}</div>
+                      </div>
+                    </div>
+                    <button className="btn-icon" onClick={() => handleDeleteExp(e.id)}><FiTrash2 /></button>
+                  </div>
+                ))}
+              </div>
+              <form onSubmit={handleAddExp} className="admin-add-form border-top mt-4 pt-4">
+                <input type="text" className="form-input mb-2" placeholder="Digital Role" value={newExp.role} onChange={v => setNewExp({...newExp, role: v.target.value})} required/>
+                <input type="text" className="form-input mb-2" placeholder="Organization" value={newExp.company} onChange={v => setNewExp({...newExp, company: v.target.value})} required/>
+                <input type="text" className="form-input mb-2" placeholder="Timeline (e.g. 2023 - Present)" value={newExp.period} onChange={v => setNewExp({...newExp, period: v.target.value})} required/>
+                <textarea className="form-input mb-2" rows="3" placeholder="Mission Description" value={newExp.description} onChange={v => setNewExp({...newExp, description: v.target.value})} required></textarea>
+                <button type="submit" className="btn btn-primary w-full"><FiPlus/> Add Protocol</button>
+              </form>
+            </section>
+
+            <section className="admin-section glass-panel">
+              <div className="section-head"><h3>Skillset Array</h3></div>
+              <div className="flex gap-2 mb-4">
+                {['frontend', 'backend', 'devops'].map(cat => (
+                  <button key={cat} onClick={() => setNewSkill({...newSkill, category: cat})} className={`btn btn-outline ${newSkill.category === cat ? 'active-cat' : ''}`} style={{padding: '5px 12px', fontSize: '0.8rem', borderColor: newSkill.category === cat ? 'var(--accent-primary)' : ''}}>
+                    {cat.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+              <div className="admin-list">
+                {data.skills?.[newSkill.category]?.map((s, idx) => (
+                  <div key={idx} className="admin-list-item">
+                    <div className="list-info">
+                      <strong>{s.name}</strong> <span style={{color: 'var(--accent-primary)', fontSize: '0.8rem'}}>{s.level}%</span>
+                    </div>
+                    <button className="btn-icon" onClick={() => handleDeleteSkill(newSkill.category, idx)}><FiTrash2 /></button>
+                  </div>
+                ))}
+              </div>
+              <form onSubmit={handleAddSkill} className="admin-add-form border-top mt-4 pt-4">
+                <input type="text" className="form-input mb-2" placeholder="Tech / Stack" value={newSkill.name} onChange={v => setNewSkill({...newSkill, name: v.target.value})} required/>
+                <div className="flex gap-4 items-center mb-2">
+                   <label className="form-label mb-0">Level %</label>
+                   <input type="range" className="w-full" min="0" max="100" value={newSkill.level} onChange={v => setNewSkill({...newSkill, level: v.target.value})} />
+                   <span style={{minWidth: '35px'}}>{newSkill.level}</span>
+                </div>
+                <button type="submit" className="btn btn-primary w-full"><FiPlus/> Inject Skill</button>
+              </form>
+            </section>
+          </div>
        </main>
     </div>
   );
 }
+
