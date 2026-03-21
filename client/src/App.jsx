@@ -54,7 +54,7 @@ export default function App() {
   return (
     <>
       <InteractiveBackground />
-      <Navbar hero={data.hero} />
+      <Navbar hero={data.hero} social={data.social} />
       <Hero data={data.hero} />
       <About data={data.about} />
       <Projects projects={data.projects} />

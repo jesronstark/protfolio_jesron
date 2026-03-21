@@ -1,55 +1,50 @@
 import React from 'react';
+import { FiLayout, FiServer, FiCpu, FiMonitor } from 'react-icons/fi';
 import './Skills.css';
 
 export default function Skills({ data }) {
   if (!data) return null;
 
   const categories = [
-    { key: 'frontend', title: 'Frontend Mastery', icon: '🎨' },
-    { key: 'backend', title: 'Backend Engine', icon: '⚙️' },
-    { key: 'devops', title: 'DevOps & Cloud', icon: '☁️' }
+    { key: 'frontend', name: 'Frontend Stacks', icon: <FiLayout/>, color: 'var(--accent-primary)', glow: 'rgba(0, 240, 255, 0.3)' },
+    { key: 'backend', name: 'Node / Database', icon: <FiServer/>, color: 'var(--accent-secondary)', glow: 'rgba(255, 0, 85, 0.3)' },
+    { key: 'devops', name: 'Cloud / DevOps', icon: <FiCpu/>, color: 'var(--accent-tertiary)', glow: 'rgba(112, 0, 255, 0.3)' }
   ];
 
   return (
-    <section id="skills" className="skills section">
-      <div className="container">
-        <h2 className="section-title">Technical <span className="text-secondary">Skills</span></h2>
-        
-        <div className="skills-grid">
-          {categories.map((category, idx) => {
-            const skillsList = data[category.key];
-            if (!skillsList || skillsList.length === 0) return null;
+    <section id="skills" className="section container">
+      <h2 className="section-title text-gradient">Technical Arsenal</h2>
+      
+      <div className="skills-grid">
+        {categories.map((cat, idx) => (
+          <div key={idx} className={`glass-panel skill-category ${cat.key}-cat`}>
+            <div className="cat-head">
+              <span className="cat-icon" style={{color: cat.color}}>{cat.icon}</span>
+              <h3 className="cat-name">{cat.name}</h3>
+            </div>
             
-            return (
-              <div key={idx} className="skill-card glass-panel animate-fade-in-up" style={{ animationDelay: `${idx * 0.15}s` }}>
-                <div className="skill-card-header">
-                  <span className="skill-icon">{category.icon}</span>
-                  <h3 className="skill-category-title">{category.title}</h3>
+            <div className="skills-stack">
+              {data[cat.key]?.map((skill, i) => (
+                <div key={i} className="skill-node">
+                  <div className="skill-node-info">
+                    <span className="skill-node-name">{skill.name}</span>
+                    <span className="skill-node-percent">{skill.level}%</span>
+                  </div>
+                  <div className="skill-track">
+                    <div 
+                      className="skill-fill" 
+                      style={{ 
+                        width: `${skill.level}%`, 
+                        background: `linear-gradient(90deg, ${cat.color}, #fff)`,
+                        boxShadow: `0 0 15px ${cat.glow}`
+                      }}
+                    ></div>
+                  </div>
                 </div>
-                
-                <div className="skills-list">
-                  {skillsList.map((skill, sIdx) => (
-                    <div key={sIdx} className="skill-item">
-                      <div className="skill-info">
-                        <span className="skill-name">{skill.name}</span>
-                        <span className="skill-percent">{skill.level}%</span>
-                      </div>
-                      <div className="skill-bar-bg">
-                        <div 
-                          className="skill-bar-fill" 
-                          style={{ 
-                            width: `${skill.level}%`,
-                            background: `linear-gradient(90deg, var(--accent-primary), ${idx === 2 ? 'var(--accent-tertiary)' : 'var(--accent-secondary)'})` 
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
