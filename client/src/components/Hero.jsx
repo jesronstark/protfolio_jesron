@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiArrowRight, FiTerminal } from 'react-icons/fi';
 import { FaWhatsapp, FaGithub } from 'react-icons/fa';
+import jesronImage from '../assets/jesron-image.png';
 import './Hero.css';
 
 export default function Hero({ data }) {
@@ -44,10 +45,9 @@ export default function Hero({ data }) {
         <div className="hero-visual">
           <div className="glass-frame">
              <img 
-                src={data.heroImage || "/profile.jpg"} 
-                alt="Jesron" 
+                src={data.heroImage !== '/profile.jpg' && data.heroImage ? data.heroImage : jesronImage} 
+                alt="Jesron Profile" 
                 className="hero-pic" 
-                onError={(e) => { e.target.src = 'https://i.ibb.co/L5hYhY3/profile-placeholder.jpg' }}
              />
              <div className="cyber-corner top-left"></div>
              <div className="cyber-corner bottom-right"></div>
