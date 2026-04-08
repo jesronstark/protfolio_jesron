@@ -38,7 +38,7 @@ export default function Contact({ data }) {
             <label className="form-label">Message Payload</label>
             <textarea className="form-input" rows="5" placeholder="Operational details..."></textarea>
           </div>
-          <button type="button" className="btn btn-primary form-full" style={{background: 'var(--accent-primary)', color: 'black'}}><FiSend /> Dispatch Payload</button>
+          
         </form>
       </div>
     </section>
