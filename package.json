@@ -4,8 +4,8 @@
   "description": "Fullstack MERN Portfolio",
   "scripts": {
     "start": "npm run preview --prefix client",
-    "install": "npm install --prefix client",
-    "build": "npm run install && npm run build --prefix client",
+    "install-client": "npm install --prefix client",
+    "build": "npm run build --prefix client",
     "dev": "npm run dev --prefix client"
   }
 }
